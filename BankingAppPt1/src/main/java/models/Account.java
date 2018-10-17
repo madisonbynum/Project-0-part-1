@@ -1,9 +1,31 @@
 package models;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Account implements Serializable {
+	
+	Bank eclipseBank = new Bank();
+
+	
+//	ArrayList<Customer> CList = new ArrayList<Customer>();
+//	Customer C = new Customer("luis", "doi", "ldoi", "111");
+//	Customer C2 = new Customer("luis", "doi", "ldoi", "111");
+//	Customer C3 = new Customer("luis", "doi", "ldoi", "222");
+//	CList.add(C);
+//
+//	System.out.println(CList.contains(C));
+//	System.out.println(CList.contains(C2));
+//	System.out.println(CList.contains(C3));
+//
+//	for (Customer c : CList) {
+//		if (c.getFirstname().equals("luis"))
+//			System.out.println("success. found luis");
+//
+//	}
 	/**
 	 * 
 	 */
@@ -15,20 +37,22 @@ public class Account implements Serializable {
 
 	private String accountName;
 	private float balance;
-	private ArrayList<String> accountHolders;
+	private ArrayList<String> accountOwners;
 	private Status status;
+	private long accountNumber;
+	private String accountOwner;
 
 	// Created enumerated data type for status
 	public enum Status {
-		PENDING, ACTIVE, ClOSED;
+		PENDING, ACTIVE, CLOSED;
 	}
 
 	// Constructors
 
 	// This constructor is called when more than one owner is trying to create an
 	// account
-	public Account(ArrayList<String> accountHolders, String accountName, long accountID) {
-		this.accountHolders = accountHolders;
+	public Account(ArrayList<String> accountOwners, String accountName, long accountID) {
+		this.accountOwners = accountOwners;
 		this.accountName = accountName;
 		this.balance = 0.00f;
 		this.status = Status.PENDING;
@@ -36,8 +60,7 @@ public class Account implements Serializable {
 
 	// This constructor is called when ONE person is trying to create an account
 	public Account(String accountOwner, String accountName, long accountID) {
-		this.accountHolders = new ArrayList<String>();
-		this.accountHolders.add(accountOwner);
+		this.accountOwner= accountOwner;
 		this.accountName = accountName;
 		this.balance = 0.00f;
 		this.status = Status.PENDING;
@@ -89,9 +112,27 @@ public class Account implements Serializable {
 	}
 
 	// generate getters and setters
-
+	
+	
+	
 	public String getAccountName() {
 		return accountName;
+	}
+
+	public String getAccountOwner() {
+		return accountOwner;
+	}
+
+	public void setAccountOwner(String accountOwner) {
+		this.accountOwner = accountOwner;
+	}
+
+	public long getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 	public void setAccountName(String accountName) {
@@ -106,12 +147,12 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 
-	public ArrayList<String> getAccountHolders() {
-		return accountHolders;
+	public ArrayList<String> getAccountOwners() {
+		return accountOwners;
 	}
 
-	public void setAccountHolders(ArrayList<String> accountHolders) {
-		this.accountHolders = accountHolders;
+	public void setAccountOwners(ArrayList<String> accountHolders) {
+		this.accountOwners = accountHolders;
 	}
 
 	public Status getStatus() {
@@ -122,11 +163,64 @@ public class Account implements Serializable {
 		this.status = status;
 	}
 
-	// Generate to-string
 	@Override
 	public String toString() {
-		return "Account [accountName=" + accountName + ", balance=" + balance + ", accountHolders=" + accountHolders
-				+ ", status=" + status + "]";
+		return "Account [accountName=" + accountName + ", balance=" + balance + ", accountOwners=" + accountOwners
+				+ ", status=" + status + ", accountNumber=" + accountNumber + "]";
 	}
 
+//	public void applyForChecking(Customer C, Scanner scanner){
+//		Customer customer = new Customer("","","","");
+//		System.out.println(C.getFirstname()+ " " + C.getLastname() +", you are +"
+//				+ "attempting to apply for a checking account.");
+//		String s = scanner.nextLine();
+//		if(C.findAccount(C) == null) {
+//			long accountID = genRandomIDNum(10L);
+//			long tempAcctID = genRandomIDNum(accountID);
+//			new Account(C.getUsername(),"Checking", tempAcctID);
+//			customer.account.setAccountOwner(C.getUsername());
+//			customer.account.setAccountName("Checking");
+//			customer.account.setAccountNumber(tempAcctID);
+//			System.out.println(eclipseBank.customerList);
+//		}
+//		}
+	
+
+	public void applyForJoint(Customer C, Scanner scanner) {
+
+	}
+
+	public ArrayList<Account> getAccounts(ArrayList<String> accountOwners2, String accountName2, long accountNumber2) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+	
+	public boolean changeStatusToACTIVE() {
+		this.status = Status.ACTIVE;
+		return true;
+	}
+	
+	public boolean changeStatusToCLOSED() {
+		this.status = Status.CLOSED;
+		return true;
+	}
+	
+//	public static long genRandomIDNum(long accountID) {
+//		Random rand = new Random(); 
+//		long rand1;
+//		long rand2;
+//		long randomV;
+//		while(true) {
+//			rand1 = rand.nextInt(100000000);
+//	        rand2 = rand.nextInt(100000000);
+//	        randomV = rand1 * rand2;
+//	        // check if it already exists
+//	        if(accountID!=randomV)
+//	        	break;
+//		}
+//        return randomV;
+//	}
+
 }
+

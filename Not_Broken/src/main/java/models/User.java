@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 public abstract class User implements Serializable{
 
-	
+		/**
+	 * 
+	 */
 	private static final long serialVersionUID = -8374191857782105954L;
 	
 	

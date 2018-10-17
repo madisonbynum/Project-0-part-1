@@ -1,11 +1,6 @@
 package views;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import models.Admin;
@@ -21,9 +16,9 @@ public class SignUpLogIn implements Serializable {
 	 */
 	private static final long serialVersionUID = -7792558825097595445L;
 	
+	
 	Bank eclipseBank = new Bank();
-	public static SerialBank sbank= new SerialBank();
-
+	SerialBank sbank = new SerialBank();
 	
 	public void logIn(Scanner scanner) {
 		System.out.println("");
@@ -35,6 +30,7 @@ public class SignUpLogIn implements Serializable {
 		System.out.println("");
 
 		String s = scanner.nextLine();
+
 		try {
 			SignUpLogIn login = new SignUpLogIn();
 			int S = Integer.valueOf(s);
@@ -53,11 +49,9 @@ public class SignUpLogIn implements Serializable {
 
 				//Sign in as Customer
 				System.out.println("");
-				sbank.loadSerializeMyBank();
-				System.out.println(eclipseBank.customerList);
+
 				System.out.println("Enter customer username:");
 				String cUsername = scanner.nextLine();
-				
 				String cUn = cUsername.toLowerCase();
 
 				System.out.println("Enter customer password:");
@@ -176,11 +170,11 @@ public class SignUpLogIn implements Serializable {
 			System.out.println("Your username is: " + un + " and your password is: " + pw);
 			System.out.println("You may now log in.");
 			System.out.println("");
-			//serialization
+			
+			// serialize the arraylist with save
 			sbank.writeSerializeMyBank();
-			System.out.println(eclipseBank.customerList);
 			SignUpLogIn LogIn = new SignUpLogIn();
 			LogIn.logIn(scanner);
 		}
-	
-}}
+	}
+}

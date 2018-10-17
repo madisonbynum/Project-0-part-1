@@ -3,7 +3,6 @@ package views;
 import java.io.Serializable;
 import java.util.Scanner;
 
-import models.Account;
 import models.Bank;
 import models.Customer;
 
@@ -14,7 +13,7 @@ public class CustomerMenu implements Serializable {
 	 */
 	
 	Bank eclipseBank = new Bank();
-	
+	SignUpLogIn login;
 
 		public void customerMenu(Customer C, Scanner scanner) {
 			System.out.println("");
@@ -31,7 +30,7 @@ public class CustomerMenu implements Serializable {
 			
 			try {
 				CustomerMenu customerMenu = new CustomerMenu();
-				Account account = new Account("", "", 0);
+				Customer customer = new Customer("","","","");
 				
 				int S = Integer.valueOf(s);
 				switch (S) {
@@ -47,11 +46,11 @@ public class CustomerMenu implements Serializable {
 					String x = scanner.nextLine();
 					
 						if(x.equals("1")) {
-//						account.applyForChecking(C, scanner);
+						customer.applyForChecking(C, scanner);
 						break;
 						}
 						else if(x.equals("2")) {
-						account.applyForJoint(C, scanner);
+						customer.applyForJoint(C, scanner);
 						break;
 						}
 						else if(x.equals("3")) {
